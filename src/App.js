@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+import { useState } from 'react';
+import NewsList from "./components/NewsList";
+import NavBar from "./components/NavBar"
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
+  const [message, setMessage] = useState('');
+  const getData = (data) => {
+    if (data === '') {
+      setMessage('Kenya')
+    }
+    else if (data === 'testing'){
+      setMessage('testings')
+    }
+    else{
+      setMessage(data)
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-dark">
+      <NavBar onSubmit={getData}/>
+      <br />
+      <NewsList searchContent={message}/>
     </div>
   );
 }

@@ -1,0 +1,13 @@
+.spin{
+    background-color: #ddd;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.text{
+    color: blue;
+    font-size: x-large;
+}

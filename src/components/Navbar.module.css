@@ -1,0 +1,9 @@
+.nav_brand img{
+    width: 35px;
+}
+.nav_brand span{
+    font-weight: bolder;
+    font-style: oblique;
+    color: chartreuse;
+    font-size: 25px;
+}
