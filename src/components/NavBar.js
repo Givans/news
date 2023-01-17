@@ -48,7 +48,7 @@ const NavBar = (props) => {
             />
             <Button type='submit' variant="outline-info">Search</Button>
           </Form>
-            <h2 style={{color: 'white'}}>Message: {message}</h2>
+            {/* <h2 style={{color: 'white'}}>Message: {message}</h2> */}
             {props.onSubmit(message)}
 
         </Navbar.Collapse>
