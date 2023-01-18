@@ -12,23 +12,45 @@ const NewsList = ({searchContent}) => {
     const [isLoading, setLoading]=useState(false);
     var search = searchContent
     const new_search = search.replace(/ /g, '%20')
-    console.log(new_search);
-
+    // console.log(new_search);
+    // const options = {
+    //   method: 'GET',
+    //   url: 'https://kenyan-news-api.p.rapidapi.com/news',
+    //   headers: {
+    //     'X-RapidAPI-Key': '3b37ddd0c7mshfcd7b9d7326c2d7p1a4a40jsnededa604a3c1',
+    //     'X-RapidAPI-Host': 'kenyan-news-api.p.rapidapi.com'
+    //   }
+    // };
 
     useEffect (() => {
+      const options = {
+        method: 'GET',
+        url: 'https://kenyan-news-api.p.rapidapi.com/news',
+        headers: {
+          'X-RapidAPI-Key': '3b37ddd0c7mshfcd7b9d7326c2d7p1a4a40jsnededa604a3c1',
+          'X-RapidAPI-Host': 'kenyan-news-api.p.rapidapi.com'
+        }
+      };
 
       setLoading(true);
       const getArticles = async () => {
 
           // mediastack
-          // const response = axios.get('http://api.mediastack.com/v1/news?access_key=bf3151e1eef6cba16d1a097d5afc1795')
-          // news api
-          const response = axios.get("https://newsapi.org/v2/everything?q="+new_search+"&apiKey=2d9beffec7d04dc3ada87fca1c4cc6dd")
-          setArticles((await response).data.articles)
-          setLoading(false);
+          // const response = axios.get('http://api.mediastack.com/v1/news?access_key=bf3151e1eef6cba16d1a097d5afc1795&languages=en,-de')
+          // // news api
+          // // const response = axios.get("https://newsapi.org/v2/everything?q="+new_search+"&apiKey=2d9beffec7d04dc3ada87fca1c4cc6dd")
+          // console.log(response);
+          // setArticles((await response).data.data)
+          // setLoading(false);
+          axios.request(options).then(function (response) {
+            setArticles(response.data)
+            setLoading(false);
+          }).catch(function (error) {
+            console.error(error);
+          });
       }
       getArticles()
-    }, [searchContent])
+    }, [new_search])
   return (
     isLoading ? <Spinner /> :
 
@@ -36,14 +58,17 @@ const NewsList = ({searchContent}) => {
       <br />
       <Row>
         {articles.map(article => {
+          // console.log(article);
           return (
             <NewsItem 
               title={article.title}
-              description={article.description}
+              authorLink={article.authorLink}
               url={article.url}
-              urlToImage={article.urlToImage}
+              urlToImage={article.imgUrl}
               author={article.author}
-              publishedAt={article.publishedAt}
+              publishedAt={article.publisedAt}
+              description={"news"}
+
             />
           )
         })}
