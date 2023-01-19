@@ -19,7 +19,7 @@ const NewsList = ({searchContent}) => {
         method: 'GET',
         url: 'https://kenyan-news-api.p.rapidapi.com/news',
         headers: {
-          'X-RapidAPI-Key': Your API KEY',
+          'X-RapidAPI-Key': 'Your API KEY',
           'X-RapidAPI-Host': 'kenyan-news-api.p.rapidapi.com'
         }
       };
